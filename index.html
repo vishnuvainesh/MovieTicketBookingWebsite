@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="CineVerse – Premium Movie Ticket Booking. Book tickets, discover films, enjoy the magic of cinema."/>
+  <title>CineVerse – Premium Movie Ticket Booking</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo" onclick="showPage('home')" role="button" tabindex="0" aria-label="CineVerse Home">
+    <span class="logo-icon" aria-hidden="true">🎬</span>
+    <span class="logo-text">CineVerse</span>
+  </div>
+
+  <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="nav-links" id="navLinks" role="menubar">
+    <li role="none"><a href="#" class="nav-link active" data-page="home" role="menuitem">Home</a></li>
+    <li role="none"><a href="#" class="nav-link" data-page="movies" role="menuitem">Movies</a></li>
+    <li role="none"><a href="#" class="nav-link" data-page="theaters" role="menuitem">Theaters</a></li>
+    <li role="none"><a href="#" class="nav-link" data-page="offers" role="menuitem">Offers</a></li>
+    <li role="none"><a href="#" class="nav-link" data-page="dashboard" role="menuitem">My Bookings</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <div class="nav-search" role="search">
+      <input type="text" placeholder="Search movies, theaters…" id="navSearch" aria-label="Search movies and theaters" autocomplete="off"/>
+      <button class="search-btn" onclick="triggerSearch()" aria-label="Search">🔍</button>
+    </div>
+    <button class="btn-login" onclick="showPage('login')">Login</button>
+    <button class="btn-signup" onclick="showPage('signup')">Sign Up</button>
+  </div>
+</nav>
+
+<!-- ======================================================
+     PAGE: HOME
+====================================================== -->
+<main id="page-home" class="page active" role="main">
+
+  <!-- HERO SLIDER -->
+  <section class="hero" id="hero" aria-label="Featured movies">
+    <div class="hero-slides" id="heroSlides">
+
+      <!-- Slide 1 – Dune III -->
+      <div class="hero-slide active" data-slide="0" style="--hero-bg: linear-gradient(135deg,#0a0a1a 0%,#1a0533 50%,#0d1b2a 100%)">
+        <div class="hero-content">
+          <div class="hero-badge">🔥 Now Showing</div>
+          <h1 class="hero-title">Dune: Part Three</h1>
+          <p class="hero-meta" aria-label="Movie details">
+            <span>⭐ 9.2</span><span aria-hidden="true">·</span>
+            <span>Sci-Fi / Adventure</span><span aria-hidden="true">·</span>
+            <span>2h 48m</span>
+          </p>
+          <p class="hero-desc">The desert war reaches its apocalyptic conclusion. Paul Atreides faces the ultimate reckoning across the stars.</p>
+          <div class="hero-btns">
+            <button class="btn-primary" onclick="showMovieDetails('dune3')">Book Now</button>
+            <button class="btn-ghost" onclick="showToast('🎬 Trailer coming soon!')">▶ Watch Trailer</button>
+          </div>
+        </div>
+        <div class="hero-poster" aria-hidden="true">
+          <div class="poster-placeholder dune-poster">
+            <div class="poster-art">
+              <div class="planet"></div>
+              <div class="sand-wave"></div>
+              <div class="poster-title-art">DUNE III</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 – Avatar IV -->
+      <div class="hero-slide" data-slide="1" style="--hero-bg: linear-gradient(135deg,#0a1a0a 0%,#1a2a0d 50%,#0d1a2a 100%)">
+        <div class="hero-content">
+          <div class="hero-badge">🎬 Coming Soon</div>
+          <h1 class="hero-title">Avatar: New Dawn</h1>
+          <p class="hero-meta">
+            <span>⭐ 8.9</span><span aria-hidden="true">·</span>
+            <span>Fantasy / Action</span><span aria-hidden="true">·</span>
+            <span>3h 10m</span>
+          </p>
+          <p class="hero-desc">A new chapter unfolds in Pandora. Ancient spirits rise as humanity faces its final test.</p>
+          <div class="hero-btns">
+            <button class="btn-primary" onclick="showMovieDetails('avatar4')">Book Now</button>
+            <button class="btn-ghost" onclick="showToast('🎬 Trailer coming soon!')">▶ Watch Trailer</button>
+          </div>
+        </div>
+        <div class="hero-poster" aria-hidden="true">
+          <div class="poster-placeholder avatar-poster">
+            <div class="poster-art">
+              <div class="tree-glow"></div>
+              <div class="poster-title-art">AVATAR IV</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 – Avengers V -->
+      <div class="hero-slide" data-slide="2" style="--hero-bg: linear-gradient(135deg,#1a0a0a 0%,#2a0d1a 50%,#1a0d2a 100%)">
+        <div class="hero-content">
+          <div class="hero-badge">💫 Fan Favorite</div>
+          <h1 class="hero-title">Avengers: Rebirth</h1>
+          <p class="hero-meta">
+            <span>⭐ 9.5</span><span aria-hidden="true">·</span>
+            <span>Action / Superhero</span><span aria-hidden="true">·</span>
+            <span>2h 55m</span>
+          </p>
+          <p class="hero-desc">Earth's mightiest heroes return. A universe reborn, a war without end — until now.</p>
+          <div class="hero-btns">
+            <button class="btn-primary" onclick="showMovieDetails('avengers5')">Book Now</button>
+            <button class="btn-ghost" onclick="showToast('🎬 Trailer coming soon!')">▶ Watch Trailer</button>
+          </div>
+        </div>
+        <div class="hero-poster" aria-hidden="true">
+          <div class="poster-placeholder avengers-poster">
+            <div class="poster-art">
+              <div class="arc-glow"></div>
+              <div class="poster-title-art">AVENGERS V</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Controls -->
+    <div class="hero-nav" role="group" aria-label="Slideshow controls">
+      <button class="hero-prev" onclick="changeHeroSlide(-1)" aria-label="Previous slide">‹</button>
+      <div class="hero-dots" role="tablist" aria-label="Slides">
+        <button class="dot active" onclick="goToSlide(0)" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+        <button class="dot" onclick="goToSlide(1)" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+        <button class="dot" onclick="goToSlide(2)" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+      </div>
+      <button class="hero-next" onclick="changeHeroSlide(1)" aria-label="Next slide">›</button>
+    </div>
+  </section>
+
+  <!-- FEATURED MOVIES -->
+  <section class="section featured-movies" aria-labelledby="featuredTitle">
+    <div class="section-header">
+      <h2 class="section-title" id="featuredTitle">Featured Movies</h2>
+      <a href="#" onclick="showPage('movies');return false;" class="see-all" aria-label="See all movies">See All →</a>
+    </div>
+    <div class="movies-grid" id="featuredMoviesGrid" role="list"></div>
+  </section>
+
+  <!-- UPCOMING CAROUSEL -->
+  <section class="section upcoming-section" aria-labelledby="upcomingTitle">
+    <div class="section-header">
+      <h2 class="section-title" id="upcomingTitle">Upcoming Movies</h2>
+      <div class="carousel-controls" role="group" aria-label="Scroll carousel">
+        <button onclick="scrollCarousel('left')" aria-label="Scroll left">‹</button>
+        <button onclick="scrollCarousel('right')" aria-label="Scroll right">›</button>
+      </div>
+    </div>
+    <div class="upcoming-carousel" id="upcomingCarousel" role="list"></div>
+  </section>
+
+  <!-- OFFERS PREVIEW -->
+  <section class="section offers-section" aria-labelledby="offersHomeTitle">
+    <div class="section-header">
+      <h2 class="section-title" id="offersHomeTitle">Special Offers</h2>
+      <a href="#" onclick="showPage('offers');return false;" class="see-all">View All Offers →</a>
+    </div>
+    <div class="offers-grid" id="offersGrid" role="list"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo" aria-label="CineVerse">🎬 CineVerse</div>
+        <p>Your ultimate destination for premium movie experiences. Book tickets, discover films, enjoy the magic of cinema.</p>
+        <div class="social-links" aria-label="Social media links">
+          <a href="#" class="social-btn" aria-label="Twitter / X">𝕏</a>
+          <a href="#" class="social-btn" aria-label="Facebook">f</a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+          <a href="#" class="social-btn" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#" class="nav-link" data-page="movies">Movies</a></li>
+          <li><a href="#" class="nav-link" data-page="theaters">Theaters</a></li>
+          <li><a href="#" class="nav-link" data-page="offers">Offers</a></li>
+          <li><a href="#" class="nav-link" data-page="dashboard">My Bookings</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#" onclick="showToast('📖 FAQs coming soon');return false;">FAQs</a></li>
+          <li><a href="#" onclick="showToast('📜 Policy coming soon');return false;">Cancellation Policy</a></li>
+          <li><a href="#" onclick="showToast('📧 Opening contact…');return false;">Contact Us</a></li>
+          <li><a href="#" onclick="showToast('📄 Terms coming soon');return false;">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>📧 support@cineverse.com</li>
+          <li>📞 1800-CINEVERSE</li>
+          <li>📍 Mumbai, India</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 CineVerse. All rights reserved. | Privacy Policy | Terms &amp; Conditions</p>
+    </div>
+  </footer>
+</main>
+
+<!-- ======================================================
+     PAGE: MOVIES
+====================================================== -->
+<div id="page-movies" class="page" role="main" aria-label="All Movies">
+  <div class="page-hero-mini">
+    <h1>All Movies</h1>
+    <p>Explore the latest blockbusters, indie gems, and everything in between</p>
+  </div>
+  <section class="section">
+    <div class="movies-filters" id="moviesFilters" role="group" aria-label="Movie filters">
+      <div class="filter-group">
+        <label for="filterGenre">Genre</label>
+        <select id="filterGenre" onchange="filterMovies()" aria-label="Filter by genre">
+          <option value="">All Genres</option>
+          <option>Action</option><option>Drama</option><option>Sci-Fi</option>
+          <option>Comedy</option><option>Horror</option><option>Romance</option>
+          <option>Thriller</option><option>Animation</option><option>Superhero</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="filterLang">Language</label>
+        <select id="filterLang" onchange="filterMovies()" aria-label="Filter by language">
+          <option value="">All Languages</option>
+          <option>English</option><option>Hindi</option><option>Tamil</option>
+          <option>Telugu</option><option>Malayalam</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="filterRating">Rating</label>
+        <select id="filterRating" onchange="filterMovies()" aria-label="Filter by rating">
+          <option value="">All Ratings</option>
+          <option value="9">9+ ⭐</option><option value="8">8+ ⭐</option><option value="7">7+ ⭐</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="filterFormat">Format</label>
+        <select id="filterFormat" onchange="filterMovies()" aria-label="Filter by format">
+          <option value="">All Formats</option>
+          <option>IMAX</option><option>4DX</option><option>2D</option><option>3D</option>
+        </select>
+      </div>
+      <button class="btn-ghost filter-reset-btn" onclick="resetFilters()" aria-label="Reset all filters">Reset Filters</button>
+    </div>
+    <p class="filter-count" id="filterCount" aria-live="polite"></p>
+    <div class="movies-grid all-movies" id="allMoviesGrid" role="list"></div>
+  </section>
+</div>
+
+<!-- ======================================================
+     PAGE: MOVIE DETAILS
+====================================================== -->
+<div id="page-movie-details" class="page" role="main" aria-label="Movie Details">
+  <div class="movie-details-container" id="movieDetailsContent"></div>
+</div>
+
+<!-- ======================================================
+     PAGE: THEATERS
+====================================================== -->
+<div id="page-theaters" class="page" role="main" aria-label="Theaters">
+  <div class="page-hero-mini">
+    <h1>Theaters &amp; Showtimes</h1>
+    <p>Select your preferred theater and showtime</p>
+  </div>
+  <section class="section">
+    <div class="theater-search-bar" role="search">
+      <input type="text" id="theaterSearchInput" placeholder="🔍 Search by city, area, or theater name…" class="theater-search-input" aria-label="Search theaters" oninput="filterTheaters()"/>
+      <input type="date" class="date-input" id="theaterDate" aria-label="Select date"/>
+      <button class="btn-primary" onclick="searchTheaters()">Find Theaters</button>
+    </div>
+    <div class="theaters-list" id="theatersList" role="list"></div>
+  </section>
+</div>
+
+<!-- ======================================================
+     PAGE: SEAT SELECTION
+====================================================== -->
+<div id="page-seats" class="page" role="main" aria-label="Seat Selection">
+  <div class="page-hero-mini">
+    <h1>Select Your Seats</h1>
+    <p id="seatPageSubtitle">Choose your preferred seats</p>
+  </div>
+  <section class="section seat-section">
+    <div class="seat-layout-wrapper">
+      <div class="seat-screen-wrapper" aria-hidden="true">
+        <div class="cinema-screen"><span>SCREEN</span></div>
+        <div class="screen-glow"></div>
+      </div>
+      <div class="seat-legend" role="list" aria-label="Seat category legend">
+        <div class="legend-item" role="listitem"><span class="seat-demo vip" aria-hidden="true"></span> VIP (₹800)</div>
+        <div class="legend-item" role="listitem"><span class="seat-demo premium" aria-hidden="true"></span> Premium (₹500)</div>
+        <div class="legend-item" role="listitem"><span class="seat-demo regular" aria-hidden="true"></span> Regular (₹250)</div>
+        <div class="legend-item" role="listitem"><span class="seat-demo booked" aria-hidden="true"></span> Booked</div>
+        <div class="legend-item" role="listitem"><span class="seat-demo selected" aria-hidden="true"></span> Selected</div>
+      </div>
+      <div class="seat-map" id="seatMap" role="group" aria-label="Seat map"></div>
+    </div>
+    <div class="seat-summary-panel">
+      <div class="summary-card glass-card">
+        <h3>Booking Summary</h3>
+        <div class="summary-movie" id="summaryMovie" aria-live="polite"></div>
+        <hr class="divider"/>
+        <div class="selected-seats-info" aria-live="polite">
+          <p>Selected Seats: <strong id="selectedSeatsDisplay">None</strong></p>
+          <p>Category Breakdown:</p>
+          <div id="categoryBreakdown"></div>
+        </div>
+        <hr class="divider"/>
+        <div class="price-summary">
+          <div class="price-row"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+          <div class="price-row"><span>Convenience Fee (5%)</span><span id="convenienceFee">₹0</span></div>
+          <div class="price-row total"><span>Total</span><span id="grandTotal">₹0</span></div>
+        </div>
+        <button class="btn-primary full-width" onclick="proceedToPayment()" style="margin-top:1.5rem">Proceed to Payment</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======================================================
+     PAGE: PAYMENT
+====================================================== -->
+<div id="page-payment" class="page" role="main" aria-label="Secure Checkout">
+  <div class="page-hero-mini">
+    <h1>Secure Checkout</h1>
+    <p>Complete your booking safely</p>
+  </div>
+  <section class="section">
+    <div class="payment-layout">
+      <!-- Left: Payment Methods -->
+      <div class="payment-form-area">
+        <div class="glass-card payment-card">
+          <h3>Payment Method</h3>
+          <div class="payment-tabs" role="tablist">
+            <button class="pay-tab active" onclick="switchPayTab(this,'card')" role="tab" aria-selected="true" aria-controls="pay-card">💳 Card</button>
+            <button class="pay-tab" onclick="switchPayTab(this,'upi')" role="tab" aria-selected="false" aria-controls="pay-upi">📱 UPI</button>
+            <button class="pay-tab" onclick="switchPayTab(this,'netbanking')" role="tab" aria-selected="false" aria-controls="pay-netbanking">🏦 Net Banking</button>
+            <button class="pay-tab" onclick="switchPayTab(this,'wallet')" role="tab" aria-selected="false" aria-controls="pay-wallet">👛 Wallets</button>
+          </div>
+
+          <!-- Card Panel -->
+          <div class="pay-content" id="pay-card" role="tabpanel">
+            <div class="card-visual" aria-hidden="true">
+              <div class="virtual-card">
+                <div class="card-chip">▊</div>
+                <div class="card-number" id="cardNumDisplay">•••• •••• •••• ••••</div>
+                <div class="card-footer">
+                  <span id="cardNameDisplay">CARDHOLDER NAME</span>
+                  <span id="cardExpDisplay">MM/YY</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cardNum">Card Number</label>
+              <input type="text" id="cardNum" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCardNumber(this)" autocomplete="cc-number" inputmode="numeric"/>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cardName">Cardholder Name</label>
+                <input type="text" id="cardName" placeholder="John Doe" oninput="document.getElementById('cardNameDisplay').textContent=this.value||'CARDHOLDER NAME'" autocomplete="cc-name"/>
+              </div>
+              <div class="form-group half">
+                <label for="cardExp">Expiry</label>
+                <input type="text" id="cardExp" placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)" autocomplete="cc-exp"/>
+              </div>
+              <div class="form-group half">
+                <label for="cardCvv">CVV</label>
+                <input type="password" id="cardCvv" placeholder="•••" maxlength="3" autocomplete="cc-csc" inputmode="numeric"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- UPI Panel -->
+          <div class="pay-content hidden" id="pay-upi" role="tabpanel" aria-hidden="true">
+            <div class="upi-section">
+              <p>Enter your UPI ID</p>
+              <input type="text" id="upiInput" placeholder="yourname@upi" class="upi-input" aria-label="UPI ID" autocomplete="off"/>
+              <p class="upi-apps-label">Or pay via</p>
+              <div class="upi-apps">
+                <button class="upi-app-btn" onclick="showToast('Opening GPay…')">GPay</button>
+                <button class="upi-app-btn" onclick="showToast('Opening PhonePe…')">PhonePe</button>
+                <button class="upi-app-btn" onclick="showToast('Opening Paytm…')">Paytm</button>
+                <button class="upi-app-btn" onclick="showToast('Opening BHIM…')">BHIM</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Net Banking Panel -->
+          <div class="pay-content hidden" id="pay-netbanking" role="tabpanel" aria-hidden="true">
+            <div class="bank-list" role="radiogroup" aria-label="Select bank">
+              <div class="bank-option"><input type="radio" name="bank" id="b1"/><label for="b1">SBI</label></div>
+              <div class="bank-option"><input type="radio" name="bank" id="b2"/><label for="b2">HDFC Bank</label></div>
+              <div class="bank-option"><input type="radio" name="bank" id="b3"/><label for="b3">ICICI Bank</label></div>
+              <div class="bank-option"><input type="radio" name="bank" id="b4"/><label for="b4">Axis Bank</label></div>
+              <div class="bank-option"><input type="radio" name="bank" id="b5"/><label for="b5">Kotak Bank</label></div>
+            </div>
+          </div>
+
+          <!-- Wallet Panel -->
+          <div class="pay-content hidden" id="pay-wallet" role="tabpanel" aria-hidden="true">
+            <div class="wallet-list">
+              <button class="wallet-btn" onclick="showToast('Opening Paytm Wallet…')">👛 Paytm Wallet</button>
+              <button class="wallet-btn" onclick="showToast('Opening Amazon Pay…')">🛒 Amazon Pay</button>
+              <button class="wallet-btn" onclick="showToast('Opening Freecharge…')">⚡ Freecharge</button>
+              <button class="wallet-btn" onclick="showToast('Opening MobiKwik…')">📲 MobiKwik</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Promo Code -->
+        <div class="glass-card promo-card">
+          <h4>Promo Code</h4>
+          <div class="promo-row">
+            <input type="text" placeholder="Enter promo code" id="promoInput" aria-label="Promo code" autocomplete="off"/>
+            <button class="btn-primary" onclick="applyPromo()">Apply</button>
+          </div>
+          <p class="promo-hint">Try: MONDAY30 · HDFC150 · STUDENT20</p>
+          <p class="promo-msg" id="promoMsg" role="alert"></p>
+        </div>
+      </div>
+
+      <!-- Right: Order Summary -->
+      <div class="payment-summary-area">
+        <div class="glass-card payment-summary-card">
+          <h3>Order Summary</h3>
+          <div id="paymentOrderSummary" aria-live="polite"></div>
+          <hr class="divider"/>
+          <div class="price-summary" id="paymentPriceSummary" aria-live="polite"></div>
+          <div class="secure-badges" aria-label="Security badges">
+            <span>🔒 256-bit SSL</span>
+            <span>✅ PCI DSS</span>
+            <span>🛡️ Secure Pay</span>
+          </div>
+          <button class="btn-primary full-width large" onclick="processPayment()">Pay Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======================================================
+     PAGE: CONFIRMATION
+====================================================== -->
+<div id="page-confirmation" class="page" role="main" aria-label="Booking Confirmed">
+  <section class="section confirmation-section">
+    <div class="confirmation-container">
+      <div class="success-animation">
+        <div class="checkmark-circle" aria-hidden="true">
+          <div class="checkmark">✓</div>
+        </div>
+        <h2>Booking Confirmed!</h2>
+        <p>Your tickets have been booked successfully.</p>
+      </div>
+      <div class="digital-ticket" id="digitalTicket" role="region" aria-label="Your digital ticket">
+        <div class="ticket-header">
+          <span class="ticket-logo">🎬 CineVerse</span>
+          <span class="ticket-type">CINEMA TICKET</span>
+        </div>
+        <div class="ticket-body" id="ticketBody"></div>
+        <div class="ticket-divider" aria-hidden="true">
+          <span class="circle left"></span>
+          <div class="dashed-line"></div>
+          <span class="circle right"></span>
+        </div>
+        <div class="ticket-footer">
+          <div class="qr-code" id="qrCode" aria-label="QR Code">
+            <div class="qr-placeholder">
+              <div class="qr-inner">
+                <svg viewBox="0 0 100 100" width="120" height="120" role="img" aria-label="Booking QR code">
+                  <rect x="5" y="5" width="35" height="35" fill="none" stroke="var(--gold)" stroke-width="3"/>
+                  <rect x="12" y="12" width="20" height="20" fill="var(--gold)" opacity="0.7"/>
+                  <rect x="60" y="5" width="35" height="35" fill="none" stroke="var(--gold)" stroke-width="3"/>
+                  <rect x="67" y="12" width="20" height="20" fill="var(--gold)" opacity="0.7"/>
+                  <rect x="5" y="60" width="35" height="35" fill="none" stroke="var(--gold)" stroke-width="3"/>
+                  <rect x="12" y="67" width="20" height="20" fill="var(--gold)" opacity="0.7"/>
+                  <rect x="48" y="48" width="8" height="8" fill="var(--gold)"/>
+                  <rect x="60" y="48" width="8" height="8" fill="var(--gold)"/>
+                  <rect x="72" y="48" width="8" height="8" fill="var(--gold)"/>
+                  <rect x="84" y="60" width="8" height="8" fill="var(--gold)"/>
+                  <rect x="60" y="72" width="8" height="8" fill="var(--gold)"/>
+                  <rect x="72" y="84" width="8" height="8" fill="var(--gold)"/>
+                  <rect x="84" y="84" width="8" height="8" fill="var(--gold)"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="booking-id-area">
+            <p>Booking ID</p>
+            <strong id="bookingId" aria-live="polite">—</strong>
+          </div>
+        </div>
+      </div>
+      <div class="confirmation-actions">
+        <button class="btn-primary" onclick="downloadTicket()">⬇ Download Ticket</button>
+        <button class="btn-ghost" onclick="showPage('home')">Back to Home</button>
+      </div>
+      <div class="email-notice" role="status">
+        <p>📧 Confirmation sent to your registered email address.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======================================================
+     PAGE: OFFERS
+====================================================== -->
+<div id="page-offers" class="page" role="main" aria-label="Special Offers">
+  <div class="page-hero-mini">
+    <h1>Special Offers</h1>
+    <p>Exclusive deals and discounts just for you</p>
+  </div>
+  <section class="section">
+    <div class="offers-grid big" id="offersGridFull" role="list"></div>
+  </section>
+</div>
+
+<!-- ======================================================
+     PAGE: DASHBOARD
+====================================================== -->
+<div id="page-dashboard" class="page" role="main" aria-label="My Dashboard">
+  <div class="page-hero-mini">
+    <h1>My Dashboard</h1>
+    <p>Manage your bookings and preferences</p>
+  </div>
+  <section class="section dashboard-section">
+    <div class="dashboard-layout">
+      <!-- Sidebar -->
+      <aside class="dashboard-sidebar glass-card" aria-label="Dashboard navigation">
+        <div class="user-profile-mini">
+          <div class="avatar" aria-label="User avatar">A</div>
+          <div>
+            <strong>Alex Johnson</strong>
+            <p>alex@example.com</p>
+          </div>
+        </div>
+        <nav class="dash-nav" aria-label="Dashboard sections">
+          <a href="#" class="dash-link active" onclick="switchDashTab(this,'bookings');return false;" aria-current="page">📋 Booking History</a>
+          <a href="#" class="dash-link" onclick="switchDashTab(this,'profile');return false;">👤 Profile</a>
+          <a href="#" class="dash-link" onclick="switchDashTab(this,'payments');return false;">💳 Saved Cards</a>
+          <a href="#" class="dash-link" onclick="switchDashTab(this,'favorites');return false;">❤️ Favorites</a>
+        </nav>
+      </aside>
+
+      <!-- Main content -->
+      <div class="dashboard-main">
+        <!-- Bookings Tab -->
+        <div class="dash-tab" id="dash-bookings" role="region" aria-label="Booking History">
+          <h3>Booking History</h3>
+          <div class="bookings-list" id="bookingsList" role="list"></div>
+        </div>
+
+        <!-- Profile Tab -->
+        <div class="dash-tab hidden" id="dash-profile" role="region" aria-label="Profile Information">
+          <h3>Profile Information</h3>
+          <div class="glass-card profile-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="profileFirst">First Name</label>
+                <input type="text" id="profileFirst" value="Alex" autocomplete="given-name"/>
+              </div>
+              <div class="form-group">
+                <label for="profileLast">Last Name</label>
+                <input type="text" id="profileLast" value="Johnson" autocomplete="family-name"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="profileEmail">Email</label>
+              <input type="email" id="profileEmail" value="alex@example.com" autocomplete="email"/>
+            </div>
+            <div class="form-group">
+              <label for="profilePhone">Phone</label>
+              <input type="tel" id="profilePhone" value="+91 98765 43210" autocomplete="tel"/>
+            </div>
+            <button class="btn-primary" onclick="showToast('✅ Profile saved successfully!')">Save Changes</button>
+          </div>
+        </div>
+
+        <!-- Payments Tab -->
+        <div class="dash-tab hidden" id="dash-payments" role="region" aria-label="Saved Payment Methods">
+          <h3>Saved Payment Methods</h3>
+          <div class="saved-cards">
+            <div class="saved-card glass-card">
+              <div class="card-icon" aria-hidden="true">💳</div>
+              <div>
+                <strong>HDFC Debit Card</strong>
+                <p>•••• •••• •••• 4242</p>
+              </div>
+              <button class="remove-btn" onclick="this.closest('.saved-card').style.opacity='0.4';showToast('🗑️ Card removed')">Remove</button>
+            </div>
+            <button class="btn-ghost add-card-btn" onclick="showToast('➕ Add card coming soon!')">+ Add New Card</button>
+          </div>
+        </div>
+
+        <!-- Favorites Tab -->
+        <div class="dash-tab hidden" id="dash-favorites" role="region" aria-label="Favorites">
+          <h3>Favorite Movies &amp; Theaters</h3>
+          <div class="movies-grid" id="favMoviesGrid" role="list"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======================================================
+     PAGE: LOGIN
+====================================================== -->
+<div id="page-login" class="page auth-page" role="main" aria-label="Login">
+  <div class="auth-container glass-card">
+    <div class="auth-logo" aria-label="CineVerse">🎬 CineVerse</div>
+    <h2>Welcome Back</h2>
+    <p class="auth-subtitle">Sign in to continue your cinema journey</p>
+    <div class="form-group">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email"/>
+    </div>
+    <div class="form-group password-group">
+      <label for="loginPassword">Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password"/>
+        <button class="toggle-pw" onclick="togglePassword('loginPassword',this)" aria-label="Toggle password visibility" type="button">👁</button>
+      </div>
+    </div>
+    <button class="btn-primary full-width" onclick="handleLogin()">Sign In</button>
+    <p class="auth-switch">New here? <a href="#" onclick="showPage('signup');return false;">Create an account</a></p>
+  </div>
+</div>
+
+<!-- ======================================================
+     PAGE: SIGNUP
+====================================================== -->
+<div id="page-signup" class="page auth-page" role="main" aria-label="Sign Up">
+  <div class="auth-container glass-card">
+    <div class="auth-logo" aria-label="CineVerse">🎬 CineVerse</div>
+    <h2>Create Account</h2>
+    <p class="auth-subtitle">Join millions enjoying cinema with CineVerse</p>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="signupFirst">First Name</label>
+        <input type="text" id="signupFirst" placeholder="John" autocomplete="given-name"/>
+      </div>
+      <div class="form-group">
+        <label for="signupLast">Last Name</label>
+        <input type="text" id="signupLast" placeholder="Doe" autocomplete="family-name"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="signupEmail">Email</label>
+      <input type="email" id="signupEmail" placeholder="you@example.com" autocomplete="email"/>
+    </div>
+    <div class="form-group password-group">
+      <label for="signupPassword">Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="signupPassword" placeholder="Min 8 characters" autocomplete="new-password"/>
+        <button class="toggle-pw" onclick="togglePassword('signupPassword',this)" aria-label="Toggle password visibility" type="button">👁</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="signupPhone">Phone</label>
+      <input type="tel" id="signupPhone" placeholder="+91 XXXXX XXXXX" autocomplete="tel"/>
+    </div>
+    <button class="btn-primary full-width" onclick="handleSignup()">Create Account</button>
+    <p class="auth-switch">Already have an account? <a href="#" onclick="showPage('login');return false;">Sign in</a></p>
+  </div>
+</div>
+
+<!-- ======================================================
+     GLOBAL UI: Loading, Toast, Mobile Nav Overlay
+====================================================== -->
+<div class="loading-overlay" id="loadingOverlay" role="status" aria-live="polite" aria-label="Loading">
+  <div class="loader">
+    <div class="film-reel" aria-hidden="true"></div>
+    <p>Loading…</p>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+<div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
